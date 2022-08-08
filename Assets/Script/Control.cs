@@ -17,10 +17,13 @@ public class Control : MonoBehaviour
 
 
     [SerializeField] float gravity = 20.0f;
+    [SerializeField] ParticleSystem effect;
 
 
     void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         characterControl = GetComponent<CharacterController>();
     }
 
@@ -30,6 +33,11 @@ public class Control : MonoBehaviour
         UpdateRotate(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         characterControl.Move(moveForce*Time.deltaTime);
         MoveTo(new Vector3 (Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
+
+        if(Input.GetButtonDown("Fire1"))
+        {
+            effect.Play();
+        }
 
 
         if(characterControl.isGrounded==false)
