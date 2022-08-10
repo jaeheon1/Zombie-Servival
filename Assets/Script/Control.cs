@@ -18,6 +18,8 @@ public class Control : MonoBehaviour
 
     [SerializeField] float gravity = 20.0f;
     [SerializeField] ParticleSystem effect;
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject aa;
 
 
     void Start()
@@ -37,6 +39,9 @@ public class Control : MonoBehaviour
         if(Input.GetButtonDown("Fire1"))
         {
             effect.Play();
+
+            Instantiate(bullet, aa.transform.position, aa.transform.rotation);
+
         }
 
 
