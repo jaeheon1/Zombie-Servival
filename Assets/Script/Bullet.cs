@@ -18,11 +18,14 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Instantiate(Resources.Load<GameObject>("WFX_BImpact Dirt"),
-            transform.position,
-            transform.rotation);
-        Destroy(this.gameObject);
 
+        if (other.CompareTag("Enemy"))
+        {
+            Instantiate(Resources.Load<GameObject>("WFX_BImpact Dirt"),
+                transform.position,
+                transform.rotation);
+            Destroy(this.gameObject);
+        }
 
     }
 
