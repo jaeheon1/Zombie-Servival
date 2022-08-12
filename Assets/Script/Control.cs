@@ -39,7 +39,7 @@ public class Control : MonoBehaviour
         if(Input.GetButtonDown("Fire1"))
         {
             effect.Play();
-
+            Soundsystem.instance.Sound(0);
             Instantiate(bullet, aa.transform.position, aa.transform.rotation);
 
         }

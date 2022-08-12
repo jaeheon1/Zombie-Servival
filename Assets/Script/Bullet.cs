@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Bullet : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class Bullet : MonoBehaviour
             Instantiate(Resources.Load<GameObject>("WFX_BImpact Dirt"),
                 transform.position,
                 transform.rotation);
+
+             other.transform.GetComponentInParent<AIControl>().health -= 20;
+            other.transform.GetComponentInParent<AIControl>().Death();
+
             Destroy(this.gameObject);
         }
 

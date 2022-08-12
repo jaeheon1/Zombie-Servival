@@ -8,6 +8,9 @@ public class AIControl : MonoBehaviour
     private NavMeshAgent agent;
     [SerializeField] Transform[] Waypoint;
 
+    public int health = 100;
+
+    private Animator animator;
     private int count;
 
 
@@ -15,6 +18,7 @@ public class AIControl : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
         InvokeRepeating(nameof(MoveNext), 0, 2);
@@ -60,7 +64,21 @@ public class AIControl : MonoBehaviour
         {
             agent.SetDestination(target.position);
         }
+
+       
+
     }
+    public void Death()
+    {
+        if (health <= 0)
+        {
+            agent.speed = 0;
+            CancelInvoke();
+            animator.SetTrigger("Die");
+            Destroy(gameObject, 3);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Character"))
@@ -75,6 +93,7 @@ public class AIControl : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+
         if(other.CompareTag("Character"))
         {
             if(other.CompareTag("Character"))
