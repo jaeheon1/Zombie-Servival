@@ -74,7 +74,7 @@ public class AIControl : MonoBehaviour
         {
             agent.speed = 0;
             CancelInvoke();
-            animator.SetTrigger("Die");
+            animator.Play("Die");
             Destroy(gameObject, 3);
         }
     }
