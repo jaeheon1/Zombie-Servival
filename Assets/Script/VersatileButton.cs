@@ -11,8 +11,12 @@ public class VersatileButton : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 
+#elif UNITY_WEBGL
+
+Application.OpenURL("http://google.com");
+
 #else
- Application.Quit();
+Application Quit();
 #endif
 
 
