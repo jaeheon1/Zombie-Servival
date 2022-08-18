@@ -6,7 +6,7 @@ public class RamdomSpawn : MonoBehaviour
 
     void Start()
     {
-       // for(int i=0;i<10;i++)
+        for(int i=0;i<10;i++)
         Instantiate(zombie, RandomPosition(),Quaternion.identity);    
     }
 

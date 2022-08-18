@@ -18,9 +18,10 @@ public class Control : MonoBehaviour
 
     [SerializeField] float gravity = 20.0f;
     [SerializeField] ParticleSystem effect;
-    [SerializeField] GameObject bullet;
+    
     [SerializeField] GameObject aa;
-
+    [SerializeField] float distance = 100.0f;
+    [SerializeField] LayerMask layer;
 
     void Start()
     {
@@ -40,7 +41,8 @@ public class Control : MonoBehaviour
         {
             effect.Play();
             Soundsystem.instance.Sound(0);
-            Instantiate(bullet, aa.transform.position, aa.transform.rotation);
+            TwoStepRay();
+           
 
         }
 
@@ -83,6 +85,46 @@ public class Control : MonoBehaviour
     public float ClampAngle(float angle,float min,float max)
     {
         return Mathf.Clamp(angle, min, max);
+    }
+
+
+    public void TwoStepRay()
+    {
+        Ray ray;
+        RaycastHit hit;
+        Vector3 target = Vector3.zero;
+
+        // 화면의 중앙 좌표 (Cross Hair 를 기준으로 Raycast를 연산 합니다.)
+
+        ray = Camera.main.ViewportPointToRay(Vector2.one * 0.5f);
+
+        //공격 사거리 안에 부딪히는 오브젝트가 있으면 target 은 광선에 부딪힌 위치로 설정합니다.
+        if(Physics.Raycast(ray,out hit,distance))
+        {
+            target = hit.point;
+        }
+        //공격 사거리 안에 부딪히는 오브젝트가 없으면 target 포인터는 최대 사거리에 위치로 설정합니다.
+        else
+        {
+            target = ray.origin + ray.direction * distance;
+        }
+
+
+        // 첫번째 Raycast 연산으로 얻어진 target 의 정보를 목표지점으로 설정하고, 
+        //총구 위치에서 Raycast 를 발사합니다.
+
+
+        Vector3 direction = (target - effect.transform.position).normalized;
+
+        if(Physics.Raycast(effect.transform.position,direction,out hit,distance,layer))
+        {
+           
+            hit.collider.GetComponentInParent<AIControl>().health -= 20;
+            hit.collider.GetComponentInParent<AIControl>().Death();
+
+          
+        }
+
     }
 
 
