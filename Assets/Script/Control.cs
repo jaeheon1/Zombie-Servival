@@ -29,8 +29,19 @@ public class Control : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         characterControl = GetComponent<CharacterController>();
     }
+    public void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //바닥과 충돌한 상태라면 
+           if (characterControl.isGrounded)
+           {
+                // 점프를 할 수 있도록 설정합니다
+                moveForce.y= 7.5f;
+           }
+        }
+    }
 
-    
     void Update()
     {
         UpdateRotate(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -46,16 +57,13 @@ public class Control : MonoBehaviour
 
         }
 
-
+        
         if(characterControl.isGrounded==false)
         {
             moveForce.y -= gravity * Time.deltaTime;
 
         }
-        else
-        {
-            moveForce.y = 0.1f;
-        }
+        Jump();
 
     }
 
@@ -121,6 +129,9 @@ public class Control : MonoBehaviour
            
             hit.collider.GetComponentInParent<AIControl>().health -= 20;
             hit.collider.GetComponentInParent<AIControl>().Death();
+
+
+            Instantiate(effect, hit.transform.position, hit.transform.rotation);
 
           
         }

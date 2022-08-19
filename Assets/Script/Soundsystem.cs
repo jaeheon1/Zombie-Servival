@@ -15,6 +15,8 @@ public class Soundsystem : MonoBehaviour
             instance = this;
         }
         audioSource = GetComponent<AudioSource>();
+
+        DontDestroyOnLoad(gameObject);
     }
 
 
