@@ -2097,7 +2097,8 @@ GameObject:
   - component: {fileID: 2725824114681949454}
   - component: {fileID: 8412309858547114860}
   - component: {fileID: 4919077900767138344}
-  - component: {fileID: -8697379457397882555}
+  - component: {fileID: 2613659098210520311}
+  - component: {fileID: -6412455052289880631}
   m_Layer: 3
   m_Name: Begger zombie
   m_TagString: Enemy
@@ -2152,7 +2153,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2177,8 +2178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
---- !u!64 &-8697379457397882555
-MeshCollider:
+--- !u!136 &2613659098210520311
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2187,10 +2188,23 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7725599599912899254, guid: f2c10cacdf0e4364eac11250038a823b, type: 3}
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!65 &-6412455052289880631
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8682921316925451726}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8753011593541088927
 GameObject:
   m_ObjectHideFlags: 0

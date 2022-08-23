@@ -5,6 +5,8 @@ using UnityEngine;
 public class Control : MonoBehaviour
 {
 
+    public int health = 100;
+
     [SerializeField] float axisspeed = 5.0f; //카메라 회전 속도
     [SerializeField] GameObject eye;
 
