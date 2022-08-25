@@ -131,10 +131,10 @@ public class Control : MonoBehaviour
         {
            
             hit.collider.GetComponentInParent<Zombie>().health -= 20;
-            hit.collider.GetComponentInParent<Zombie>().Death();
+            
 
 
-            Instantiate(effect, hit.transform.position, hit.transform.rotation);
+            
 
           
         }
