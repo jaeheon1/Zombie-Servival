@@ -25,6 +25,8 @@ public class Zombie : MonoBehaviour
     {
         health = 100;
         //agent.speed = 10;
+
+
     }
     // 게임 오브젝트가 비활성화 되었을때 호출되는 함수입니다.
 
@@ -48,6 +50,7 @@ public class Zombie : MonoBehaviour
                 // 현재 애니메이션의 진행도가 1보다 크거나 같다면 User Interface를 비활성화합니다.
                 if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
                 {
+                    GameManager.instance.count++;
                     transform.position = ObjectPool.instance.ActivePosition();
                     ObjectPool.instance.InsertQueue(gameObject);
                     
@@ -102,6 +105,7 @@ public class Zombie : MonoBehaviour
                 {
                     character.GetComponent<Control>().health -= 10;
                     animator.Rebind();// 초기화 없이 그냥 실행하면 
+                    character.GetComponent<Control>().ScreenCall();
 
                 }
             }

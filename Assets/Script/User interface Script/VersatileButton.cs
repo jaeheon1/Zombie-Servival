@@ -4,6 +4,7 @@ public class VersatileButton : MonoBehaviour
 {
    public void Scene(string name)
     {
+     
         Loading.LoadScene(name);
     }
     public void Exit()
